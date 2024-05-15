@@ -1,0 +1,25 @@
+<form (ngSubmit)="onSubmit()" class="search-form">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Enter city name</mat-label>
+    <input matInput [(ngModel)]="cityName" name="cityName" required>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!cityName">Search</button>
+</form>
+
+@if (locations.length > 0) {
+  <div #cityList class="city-list">
+    <mat-list>
+      @for (location of locations; track location.name) {
+        <mat-list-item (click)="onCitySelected(location)">
+          <h3 mat-line>
+            {{ location.name }}, {{ location.country }}
+            <span class="fi fi-{{ location.country | lowercase }}"></span>
+            <span class="mat-caption">{{ location.lat | number : '1.3-3' }}
+              , {{ location.lon | number : '1.3-3' }}</span>
+          </h3>
+        </mat-list-item>
+      }
+    </mat-list>
+  </div>
+}
+

@@ -1,0 +1,45 @@
+.search-form {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.city-list {
+  max-width: 400px;
+  margin: 1rem auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+mat-list-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+mat-list-item:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fi {
+  margin-left: 0.5rem;
+}
+
+.mat-caption {
+  display: block;
+  font-size: 0.8rem;
+  color: #757575;
+}
