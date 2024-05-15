@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Weather} from "./model/weather";
+import {WeatherData} from "./model/weather-data";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class WeatherService {
 
   getWeather(lat: number, lon: number) {
     console.log('Getting weather data for lat:', lat, 'lon:', lon);
-    return this.httpClient.get<Weather>(this.url + '?lat=' + lat + '&lon=' + lon + '&appid=' + this.appId);
+    return this.httpClient.get<WeatherData>(this.url + '?lat=' + lat + '&lon=' + lon + '&appid=' + this.appId);
   }
 
 }

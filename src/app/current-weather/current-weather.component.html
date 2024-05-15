@@ -1,1 +1,32 @@
-<p>current-weather works!</p>
+@if (weatherData) {
+  <div class="container-sm">
+    <mat-card class="example-card">
+      <mat-card-content>
+        <h2>Weather in {{ weatherData.timezone }}</h2>
+        <p class="date">
+          {{ getFormattedDate(weatherData.current.dt, weatherData.timezone_offset) | date : 'MMM dd, HH:mm'}}
+        </p>
+        <div class="weather-card">
+          <div class="weather-info">
+            <p class="temperature">
+              {{ weatherData.current.temp }}°
+            </p>
+            <p class="description">
+              {{ weatherData.current.weather[0].description }}
+            </p>
+            <p class="temp-range">
+              Day {{ weatherData.daily[0].temp.day }}°C
+              |
+              Night {{ weatherData.daily[0].temp.night }}°C
+            </p>
+          </div>
+
+          <div class="weather-icon">
+            <img src="http://openweathermap.org/img/wn/{{weatherData.current.weather[0].icon}}.png"
+                 alt="Weather icon">
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+}

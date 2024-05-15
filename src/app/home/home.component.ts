@@ -3,9 +3,10 @@ import {MatCard, MatCardContent, MatCardMdImage} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {DatePipe} from "@angular/common";
 import {SearchCityComponent} from "../search-city/search-city.component";
-import {Weather} from "../model/weather";
+import {WeatherData} from "../model/weather-data";
 import {WeatherService} from "../weather.service";
 import {Location} from "../model/location";
+import {CurrentWeatherComponent} from "../current-weather/current-weather.component";
 
 @Component({
   selector: 'app-home',
@@ -16,17 +17,16 @@ import {Location} from "../model/location";
     MatCardMdImage,
     MatIcon,
     DatePipe,
-    SearchCityComponent
+    SearchCityComponent,
+    CurrentWeatherComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  // default coordinates
-  // 44.8125° N, 20.4612° E
   defaultLatitude = 44.8125;
   defaultLongitude = 20.4612;
-  weatherData: Weather | undefined;
+  weatherData: WeatherData | undefined;
 
   constructor(private weatherService: WeatherService) {
   }
@@ -42,17 +42,9 @@ export class HomeComponent implements OnInit {
   }
 
   getWeatherData(latitude: number, longitude: number) {
-    this.weatherService.getWeather(latitude, longitude).subscribe((data: Weather) => {
+    this.weatherService.getWeather(latitude, longitude).subscribe((data: WeatherData) => {
       this.weatherData = data;
-      console.log(this.weatherData.timezone);
-      console.log(this.weatherData.current.dt)
-      console.log(this.weatherData.current.temp)
     });
-  }
-
-  getFormattedDate(timestamp: number, offset: number): string {
-    const adjustedTimestamp = (timestamp + offset) * 1000;
-    return new DatePipe('en-US').transform(adjustedTimestamp, 'MMM dd, HH:mm', 'UTC') || '';
   }
 
 }
