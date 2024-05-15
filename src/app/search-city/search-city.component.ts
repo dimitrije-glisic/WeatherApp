@@ -3,10 +3,11 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
-import {Location, SearchCityService} from "../search-city.service";
+import {SearchCityService} from "../search-city.service";
 import {MatList, MatListItem} from "@angular/material/list";
 import {DecimalPipe, LowerCasePipe, NgIf} from "@angular/common";
 import {MatLine} from "@angular/material/core";
+import {Location} from "../model/location";
 
 @Component({
   selector: 'app-search-city',

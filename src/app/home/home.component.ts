@@ -1,125 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatCard, MatCardContent, MatCardMdImage} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {DatePipe} from "@angular/common";
 import {SearchCityComponent} from "../search-city/search-city.component";
-
-const data =
-  {
-    "lat": 33.44,
-    "lon": -94.04,
-    "timezone": "America/Chicago",
-    "timezone_offset": -18000,
-    "current": {
-      "dt": 1684929490,
-      "sunrise": 1684926645,
-      "sunset": 1684977332,
-      "temp": 292.55,
-      "feels_like": 292.87,
-      "pressure": 1014,
-      "humidity": 89,
-      "dew_point": 290.69,
-      "uvi": 0.16,
-      "clouds": 53,
-      "visibility": 10000,
-      "wind_speed": 3.13,
-      "wind_deg": 93,
-      "wind_gust": 6.71,
-      "weather": [
-        {
-          "id": 803,
-          "main": "Clouds",
-          "description": "broken clouds",
-          "icon": "04d"
-        }
-      ]
-    },
-    "minutely": [
-      {
-        "dt": 1684929540,
-        "precipitation": 0
-      },
-    ],
-    "hourly": [
-      {
-        "dt": 1684926000,
-        "temp": 292.01,
-        "feels_like": 292.33,
-        "pressure": 1014,
-        "humidity": 91,
-        "dew_point": 290.51,
-        "uvi": 0,
-        "clouds": 54,
-        "visibility": 10000,
-        "wind_speed": 2.58,
-        "wind_deg": 86,
-        "wind_gust": 5.88,
-        "weather": [
-          {
-            "id": 803,
-            "main": "Clouds",
-            "description": "broken clouds",
-            "icon": "04n"
-          }
-        ],
-        "pop": 0.15
-      },
-    ],
-    "daily": [
-      {
-        "dt": 1684951200,
-        "sunrise": 1684926645,
-        "sunset": 1684977332,
-        "moonrise": 1684941060,
-        "moonset": 1684905480,
-        "moon_phase": 0.16,
-        "summary": "Expect a day of partly cloudy with rain",
-        "temp": {
-          "day": 299.03,
-          "min": 290.69,
-          "max": 300.35,
-          "night": 291.45,
-          "eve": 297.51,
-          "morn": 292.55
-        },
-        "feels_like": {
-          "day": 299.21,
-          "night": 291.37,
-          "eve": 297.86,
-          "morn": 292.87
-        },
-        "pressure": 1016,
-        "humidity": 59,
-        "dew_point": 290.48,
-        "wind_speed": 3.98,
-        "wind_deg": 76,
-        "wind_gust": 8.92,
-        "weather": [
-          {
-            "id": 500,
-            "main": "Rain",
-            "description": "light rain",
-            "icon": "10d"
-          }
-        ],
-        "clouds": 92,
-        "pop": 0.47,
-        "rain": 0.15,
-        "uvi": 9.23
-      },
-    ],
-    "alerts": [
-      {
-        "sender_name": "NWS Philadelphia - Mount Holly (New Jersey, Delaware, Southeastern Pennsylvania)",
-        "event": "Small Craft Advisory",
-        "start": 1684952747,
-        "end": 1684988747,
-        "description": "...SMALL CRAFT ADVISORY REMAINS IN EFFECT FROM 5 PM THIS\nAFTERNOON TO 3 AM EST FRIDAY...\n* WHAT...North winds 15 to 20 kt with gusts up to 25 kt and seas\n3 to 5 ft expected.\n* WHERE...Coastal waters from Little Egg Inlet to Great Egg\nInlet NJ out 20 nm, Coastal waters from Great Egg Inlet to\nCape May NJ out 20 nm and Coastal waters from Manasquan Inlet\nto Little Egg Inlet NJ out 20 nm.\n* WHEN...From 5 PM this afternoon to 3 AM EST Friday.\n* IMPACTS...Conditions will be hazardous to small craft.",
-        "tags": []
-      },
-    ]
-  };
-
+import {Weather} from "../model/weather";
+import {WeatherService} from "../weather.service";
+import {Location} from "../model/location";
 
 @Component({
   selector: 'app-home',
@@ -135,10 +21,38 @@ const data =
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  weatherData = data;
+export class HomeComponent implements OnInit {
+  // default coordinates
+  // 44.8125° N, 20.4612° E
+  defaultLatitude = 44.8125;
+  defaultLongitude = 20.4612;
+  weatherData: Weather | undefined;
 
-  getWeatherData($event: any) {
-    console.log('City Name:', $event);
+  constructor(private weatherService: WeatherService) {
   }
+
+  ngOnInit(): void {
+    console.log('Home Component Initialized, calling initial weather data.');
+    this.getWeatherData(this.defaultLatitude, this.defaultLongitude);
+  }
+
+  onCitySelected($event: Location) {
+    console.log('City Name:', $event);
+    this.getWeatherData($event.lat, $event.lon);
+  }
+
+  getWeatherData(latitude: number, longitude: number) {
+    this.weatherService.getWeather(latitude, longitude).subscribe((data: Weather) => {
+      this.weatherData = data;
+      console.log(this.weatherData.timezone);
+      console.log(this.weatherData.current.dt)
+      console.log(this.weatherData.current.temp)
+    });
+  }
+
+  getFormattedDate(timestamp: number, offset: number): string {
+    const adjustedTimestamp = (timestamp + offset) * 1000;
+    return new DatePipe('en-US').transform(adjustedTimestamp, 'MMM dd, HH:mm', 'UTC') || '';
+  }
+
 }
