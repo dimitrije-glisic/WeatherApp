@@ -6,16 +6,15 @@ import {WeatherData} from "./model/weather-data";
   providedIn: 'root'
 })
 export class WeatherService {
-
-  url = 'https://api.openweathermap.org/data/3.0/onecall';
+  baseUrl = 'https://api.openweathermap.org/data/3.0/onecall';
   appId = 'f8747e9866f43ffc9d8bf5d9694ada40';
 
   constructor(private httpClient: HttpClient) {
   }
 
-  getWeather(lat: number, lon: number) {
-    console.log('Getting weather data for lat:', lat, 'lon:', lon);
-    return this.httpClient.get<WeatherData>(this.url + '?lat=' + lat + '&lon=' + lon + '&appid=' + this.appId);
+  getWeather(lat: number, lon: number, units: 'metric' | 'imperial') {
+    const url = this.baseUrl + '?lat=' + lat + '&lon=' + lon + '&units=' + units + '&appid=' + this.appId;
+    return this.httpClient.get<WeatherData>(url);
   }
 
 }

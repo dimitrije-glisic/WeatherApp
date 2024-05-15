@@ -1,9 +1,15 @@
 <div class="container">
 
-  <app-search-city (citySelected)="onCitySelected($event)"></app-search-city>
+  <app-search-city (citySelected)="onLocationSelect($event)"></app-search-city>
+
+  <app-units
+    (unitChanged)="onUnitSelect($event)">
+  </app-units>
 
   <app-current-weather
     [weatherData]="weatherData"
+    [units]="units"
+    [location]="location"
   ></app-current-weather>
 
 </div>
