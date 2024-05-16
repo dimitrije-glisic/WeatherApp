@@ -30,7 +30,6 @@ import {UnitsComponent} from "../units/units.component";
 })
 export class HomeComponent implements OnInit {
   // belgrade,rs latitude and longitude
-
   defaultLatitude = 44.8125;
   defaultLongitude = 20.4612;
   defaultUnits: 'metric' | 'imperial' = 'metric';

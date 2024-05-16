@@ -10,7 +10,7 @@
   <div #cityList class="city-list">
     <mat-list>
       @for (location of locations; track location.name) {
-        <mat-list-item (click)="onCitySelected(location)">
+        <mat-list-item (click)="onLocationSelected(location)">
           <h3 mat-line>
             {{ location.name }}, {{ location.country }}
             <span class="fi fi-{{ location.country | lowercase }}"></span>

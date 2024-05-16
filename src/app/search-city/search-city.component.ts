@@ -41,14 +41,12 @@ export class SearchCityComponent {
   }
 
   onSubmit() {
-    console.log('City Name:', this.cityName);
     this.searchService.getLocations(this.cityName).subscribe((locations: Location[]) => {
       this.locations = locations;
     });
-    console.log('Locations:', this.locations);
   }
 
-  onCitySelected(location: Location) {
+  onLocationSelected(location: Location) {
     this.citySelected.emit(location);
     this.locations = [];
   }

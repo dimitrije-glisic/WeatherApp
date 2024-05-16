@@ -38,4 +38,8 @@ export class CurrentWeatherComponent {
     return new DatePipe('en-US').transform(adjustedTimestamp, 'MMM dd, HH:mm', 'UTC') || '';
   }
 
+  getUnitSymbol(): string {
+    return this._units === 'metric' ? '°C' : '°F';
+  }
+
 }
