@@ -1,4 +1,3 @@
-<div class="container">
 
   <app-search-city (citySelected)="onLocationSelect($event)"></app-search-city>
 
@@ -12,4 +11,8 @@
     [location]="location"
   ></app-current-weather>
 
-</div>
+  <app-day-forecast
+    [weatherData]="weatherData"
+    [units]="units"
+  ></app-day-forecast>
+

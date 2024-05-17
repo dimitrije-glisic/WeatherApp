@@ -9,6 +9,7 @@ import {Location} from "../model/location";
 import {CurrentWeatherComponent} from "../current-weather/current-weather.component";
 import {MatChip, MatChipSet} from "@angular/material/chips";
 import {UnitsComponent} from "../units/units.component";
+import {DayForecastComponent} from "../day-forecast/day-forecast.component";
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,8 @@ import {UnitsComponent} from "../units/units.component";
     CurrentWeatherComponent,
     MatChipSet,
     MatChip,
-    UnitsComponent
+    UnitsComponent,
+    DayForecastComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

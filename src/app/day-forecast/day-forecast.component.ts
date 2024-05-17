@@ -1,22 +1,18 @@
 import {Component, Input} from '@angular/core';
-import {DatePipe, DecimalPipe} from "@angular/common";
-import {MatCard, MatCardContent} from "@angular/material/card";
 import {WeatherData} from "../model/weather-data";
-import {Location} from "../model/location";
+import {DatePipe, DecimalPipe} from "@angular/common";
 
 @Component({
-  selector: 'app-current-weather',
+  selector: 'app-day-forecast',
   standalone: true,
   imports: [
     DatePipe,
-    MatCard,
-    MatCardContent,
-    DecimalPipe
+    DecimalPipe,
   ],
-  templateUrl: './current-weather.component.html',
-  styleUrl: './current-weather.component.css'
+  templateUrl: './day-forecast.component.html',
+  styleUrl: './day-forecast.component.css'
 })
-export class CurrentWeatherComponent {
+export class DayForecastComponent {
   _weatherData: WeatherData | undefined;
   @Input() set weatherData(value: WeatherData | undefined) {
     this._weatherData = value;
@@ -25,11 +21,6 @@ export class CurrentWeatherComponent {
   _units: 'metric' | 'imperial' = 'metric';
   @Input() set units(value: 'metric' | 'imperial') {
     this._units = value;
-  }
-
-  _location: Location | undefined;
-  @Input() set location(value: Location | undefined) {
-    this._location = value;
   }
 
   getFormattedDate(timestamp: number, offset: number): string {
