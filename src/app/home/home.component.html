@@ -1,18 +1,23 @@
+<app-search-city (citySelected)="onLocationSelect($event)"></app-search-city>
 
-  <app-search-city (citySelected)="onLocationSelect($event)"></app-search-city>
+<app-units
+  (unitChanged)="onUnitSelect($event)">
+</app-units>
 
-  <app-units
-    (unitChanged)="onUnitSelect($event)">
-  </app-units>
+<app-current-weather
+  [weatherData]="weatherData"
+  [units]="units"
+  [location]="location"
+></app-current-weather>
 
-  <app-current-weather
-    [weatherData]="weatherData"
-    [units]="units"
-    [location]="location"
-  ></app-current-weather>
+<app-hourly-forecast
+  [hourlyWeatherData]="weatherData?.hourly"
+  [units]="units"
+  [timezoneOffset]="weatherData?.timezone_offset">
+</app-hourly-forecast>
 
-  <app-day-forecast
-    [weatherData]="weatherData"
-    [units]="units"
-  ></app-day-forecast>
+<app-day-forecast
+  [weatherData]="weatherData"
+  [units]="units"
+></app-day-forecast>
 

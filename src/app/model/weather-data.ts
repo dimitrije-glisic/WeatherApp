@@ -49,6 +49,9 @@ export interface WeatherData {
       icon: string;
     }];
     pop: number;
+    rain: {
+      '1h': number;
+    } | undefined;
   }];
   daily: [{
     dt: number;

@@ -10,6 +10,7 @@ import {CurrentWeatherComponent} from "../current-weather/current-weather.compon
 import {MatChip, MatChipSet} from "@angular/material/chips";
 import {UnitsComponent} from "../units/units.component";
 import {DayForecastComponent} from "../day-forecast/day-forecast.component";
+import {HourlyForecastComponent} from "../hourly-forecast/hourly-forecast.component";
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,8 @@ import {DayForecastComponent} from "../day-forecast/day-forecast.component";
     MatChipSet,
     MatChip,
     UnitsComponent,
-    DayForecastComponent
+    DayForecastComponent,
+    HourlyForecastComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
