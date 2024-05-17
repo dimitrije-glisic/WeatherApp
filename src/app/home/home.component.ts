@@ -74,6 +74,7 @@ export class HomeComponent implements OnInit {
     const latitude = this.location.lat;
     const longitude = this.location.lon;
     const units = this.units;
+    console.log(this.weatherService);
     this.weatherService.getWeather(latitude, longitude, units).subscribe((data: WeatherData) => {
       this.weatherData = data;
     });

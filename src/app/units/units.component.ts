@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {MatChip, MatChipSet} from "@angular/material/chips";
 
 @Component({
@@ -13,7 +13,6 @@ import {MatChip, MatChipSet} from "@angular/material/chips";
 })
 export class UnitsComponent {
 
-  @Input() selectedUnit: 'metric' | 'imperial' = 'metric';
   @Output() unitChanged: EventEmitter<'metric' | 'imperial'> = new EventEmitter<'metric' | 'imperial'>();
 
   onUnitChange(metric: 'metric' | 'imperial') {

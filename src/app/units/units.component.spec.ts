@@ -19,4 +19,11 @@ describe('UnitsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit metric', () => {
+    spyOn(component.unitChanged, 'emit');
+    component.onUnitChange('metric');
+    expect(component.unitChanged.emit).toHaveBeenCalledWith('metric');
+  });
+
 });

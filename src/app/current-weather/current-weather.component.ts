@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {DatePipe, DecimalPipe, NgTemplateOutlet} from "@angular/common";
+import {DatePipe, DecimalPipe} from "@angular/common";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {WeatherData} from "../model/weather-data";
 import {Location} from "../model/location";
@@ -11,8 +11,7 @@ import {Location} from "../model/location";
     DatePipe,
     MatCard,
     MatCardContent,
-    DecimalPipe,
-    NgTemplateOutlet
+    DecimalPipe
   ],
   templateUrl: './current-weather.component.html',
   styleUrl: './current-weather.component.css'
