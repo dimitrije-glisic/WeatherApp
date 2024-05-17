@@ -3,6 +3,7 @@ import {DatePipe, DecimalPipe} from "@angular/common";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {WeatherData} from "../model/weather-data";
 import {Location} from "../model/location";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-current-weather',
@@ -11,7 +12,8 @@ import {Location} from "../model/location";
     DatePipe,
     MatCard,
     MatCardContent,
-    DecimalPipe
+    DecimalPipe,
+    MatIcon
   ],
   templateUrl: './current-weather.component.html',
   styleUrl: './current-weather.component.css'
