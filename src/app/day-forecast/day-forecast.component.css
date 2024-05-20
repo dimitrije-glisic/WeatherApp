@@ -4,11 +4,11 @@ h3 {
   color: #333;
 }
 
-.day-forecast {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+/*.day-forecast {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  gap: 1rem;*/
+/*}*/
 
 .forecast-item {
   display: flex;
