@@ -1,23 +1,24 @@
-<app-search-city (citySelected)="onLocationSelect($event)"></app-search-city>
-
-<app-units
-  (unitChanged)="onUnitSelect($event)">
-</app-units>
-
-<app-current-weather
-  [weatherData]="weatherData"
-  [units]="units"
-  [location]="location"
-></app-current-weather>
-
-<app-hourly-forecast
-  [hourlyWeatherData]="weatherData?.hourly"
-  [units]="units"
-  [timezoneOffset]="weatherData?.timezone_offset">
-</app-hourly-forecast>
-
-<app-day-forecast
-  [weatherData]="weatherData"
-  [units]="units"
-></app-day-forecast>
-
+<div class="weather-dashboard">
+  <div class="search-units component-container">
+    <app-search-city (citySelected)="onLocationSelect($event)"></app-search-city>
+    <app-units (unitChanged)="onUnitSelect($event)"></app-units>
+  </div>
+  <div class="current-hourly">
+    <app-current-weather
+      [weatherData]="weatherData"
+      [units]="units"
+      [location]="location"
+    ></app-current-weather>
+    <app-hourly-forecast
+      [hourlyWeatherData]="weatherData?.hourly"
+      [units]="units"
+      [timezoneOffset]="weatherData?.timezone_offset"
+    ></app-hourly-forecast>
+  </div>
+  <div class="daily-forecast">
+    <app-day-forecast
+      [weatherData]="weatherData"
+      [units]="units"
+    ></app-day-forecast>
+  </div>
+</div>

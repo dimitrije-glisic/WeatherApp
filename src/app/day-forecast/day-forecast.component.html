@@ -1,7 +1,7 @@
 <h3>8-day forecast</h3>
 
 @if (_weatherData) {
-  <div class="day-forecast">
+  <div class="day-forecast component-container">
 
   @for (dailyForecast of _weatherData.daily; track dailyForecast.dt) {
     <div class="forecast-item">

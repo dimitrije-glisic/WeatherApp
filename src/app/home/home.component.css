@@ -1,12 +1,25 @@
-.container {
+.weather-dashboard {
   display: flex;
-  justify-content: center;
-  margin: 20px;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.container-sm {
+.search-units {
   display: flex;
-  justify-content: center;
-  margin: 20px;
-  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.current-hourly {
+  display: flex;
+  gap: 20px;
+}
+
+.daily-forecast {
+  display: flex;
+  flex-direction: column;
 }

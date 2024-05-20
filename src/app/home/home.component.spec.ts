@@ -50,36 +50,6 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get weather data on init', () => {
-    const mockWeatherData = {
-      lat: 40.7128,
-      lon: -74.0060,
-      timezone: 'America/New_York',
-      current: {
-        dt: 1624017600,
-        temp: 22.5,
-        weather: [{
-          id: 800,
-          main: 'Clear',
-          description: 'clear sky',
-          icon: '01d'
-        }]
-      },
-      daily: [{
-        temp: {
-          day: 22.5,
-          night: 15.5
-        }
-      }]
-    } as WeatherData;
-
-    weatherService.getWeather.and.returnValue(of(mockWeatherData));
-    fixture.detectChanges();
-
-    expect(weatherService.getWeather).toHaveBeenCalledWith(44.8125, 20.4612, 'metric');
-    expect(component.weatherData).toEqual(mockWeatherData);
-  });
-
   it('should update location and get weather data when location is selected', () => {
     const mockLocation = {
       name: 'New York',

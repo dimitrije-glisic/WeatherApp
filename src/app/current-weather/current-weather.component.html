@@ -1,9 +1,9 @@
 @if (_weatherData) {
-  <div class="container-sm">
+  <div class="component-container">
     <mat-card class="example-card">
       <mat-card-content>
         <p class="date">
-          {{ getFormattedDate(_weatherData.current.dt, _weatherData.timezone_offset) | date : 'MMM dd, HH:mm' }}
+          {{ getFormattedDate(_weatherData.current.dt, _weatherData.timezone_offset)}}
         </p>
         <h2>{{ _location?.name }}, {{ _location?.country }}</h2>
         <div class="weather-card">

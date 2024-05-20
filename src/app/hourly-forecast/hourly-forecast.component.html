@@ -1,6 +1,6 @@
 <h2>Hourly Forecast</h2>
 @if (hourlyWeatherData) {
-  <div class="hourly-forecast-container">
+  <div class="component-container">
     @for (forecast of getNextTenHours(); track forecast.dt) {
       <div class="forecast-item">
         <p class="time">{{ getFormattedDate(forecast.dt) }}</p>

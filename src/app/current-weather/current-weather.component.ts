@@ -15,6 +15,7 @@ import {MatIcon} from "@angular/material/icon";
     DecimalPipe,
     MatIcon
   ],
+  providers: [DatePipe],
   templateUrl: './current-weather.component.html',
   styleUrl: './current-weather.component.css'
 })
@@ -34,10 +35,11 @@ export class CurrentWeatherComponent {
     this._location = value;
   }
 
-  getFormattedDate(timestamp: number, offset: number): string {
+  constructor(private datePipe: DatePipe) {}
+
+  getFormattedDate(timestamp: number, offset: number) {
     const adjustedTimestamp = (timestamp + offset) * 1000;
-    const date = new Date(adjustedTimestamp);
-    return new DatePipe('en-US').transform(date, 'MMM dd yyyy, HH:mm', 'UTC') || '';
+    return this.datePipe.transform(new Date(adjustedTimestamp), 'MMM dd, HH:mm', 'UTC') || '';
   }
 
   getUnitSymbol(): string {

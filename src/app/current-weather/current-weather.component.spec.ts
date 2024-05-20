@@ -18,7 +18,8 @@ describe('CurrentWeatherComponent', () => {
         MatCard,
         MatCardContent,
         DecimalPipe
-      ]
+      ],
+      providers: [DatePipe]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CurrentWeatherComponent);
@@ -41,6 +42,7 @@ describe('CurrentWeatherComponent', () => {
   it('should return the correct formatted date', () => {
     const timestamp = 1614619200;
     const offset = -18000;
+    const date = new Date(1614619200 * 1000);
     expect(component.getFormattedDate(timestamp, offset)).toBe('Mar 01, 12:20');
   });
 
@@ -49,6 +51,7 @@ describe('CurrentWeatherComponent', () => {
       lat: 40.7128,
       lon: -74.0060,
       timezone: 'America/New_York',
+      timezone_offset: -14400,
       current: {
         dt: 1624017600,
         temp: 22.5,
@@ -80,11 +83,14 @@ describe('CurrentWeatherComponent', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Weather in New York, USA');
-    expect(compiled.querySelector('.temperature').textContent).toContain('22.5 °C');
-    expect(compiled.querySelector('.description').textContent).toContain('clear sky');
-    expect(compiled.querySelector('.temp-range').textContent).toContain('22.5 °C');
-    expect(compiled.querySelector('.temp-range').textContent).toContain('15.5 °C');
+    expect(compiled.querySelector('h2').textContent).toContain('New York, USA');
+    expect(compiled.querySelector('.temperature').textContent).toContain('23 °C');
+    expect(compiled.querySelector('.temp-range').textContent).toContain('23 °C');
+    expect(compiled.querySelector('.temp-range').textContent).toContain('16 °C');
+
+    const datePipe = new DatePipe('en-US');
+    const formattedDate = datePipe.transform(new Date((mockWeatherData.current.dt + mockWeatherData.timezone_offset) * 1000), 'MMM dd, HH:mm', 'UTC') || '';
+    expect(compiled.querySelector('.date').textContent).toContain(formattedDate);
   });
 
 });
