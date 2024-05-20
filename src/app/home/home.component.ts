@@ -11,6 +11,8 @@ import {MatChip, MatChipSet} from "@angular/material/chips";
 import {UnitsComponent} from "../units/units.component";
 import {DayForecastComponent} from "../day-forecast/day-forecast.component";
 import {HourlyForecastComponent} from "../hourly-forecast/hourly-forecast.component";
+import {PreviousLocationsComponent} from "../previous-locations/previous-locations.component";
+import {SearchCityService} from "../search-city.service";
 
 @Component({
   selector: 'app-home',
@@ -27,7 +29,8 @@ import {HourlyForecastComponent} from "../hourly-forecast/hourly-forecast.compon
     MatChip,
     UnitsComponent,
     DayForecastComponent,
-    HourlyForecastComponent
+    HourlyForecastComponent,
+    PreviousLocationsComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -45,8 +48,9 @@ export class HomeComponent implements OnInit {
   location: Location;
 
   weatherData: WeatherData | undefined;
+  previousLocations: Location[] | undefined;
 
-  constructor(private weatherService: WeatherService) {
+  constructor(private weatherService: WeatherService, private searchCityService: SearchCityService) {
     this.location = {
       name: this.defaultCity,
       local_names: [{
@@ -57,6 +61,8 @@ export class HomeComponent implements OnInit {
       lon: this.defaultLongitude,
       country: this.defaultCountry
     }
+    this.searchCityService.saveCity(this.location);
+    this.previousLocations = this.searchCityService.getSavedCities();
   }
 
   ngOnInit(): void {
@@ -65,7 +71,9 @@ export class HomeComponent implements OnInit {
 
   onLocationSelect($event: Location) {
     this.location = $event;
+    this.searchCityService.saveCity($event);
     this.getWeatherData();
+    this.previousLocations = this.searchCityService.getSavedCities();
   }
 
   onUnitSelect($event: 'metric' | 'imperial') {
@@ -84,4 +92,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  onLocationRemove($event: Location) {
+    this.searchCityService.removeCity($event);
+    this.previousLocations = this.searchCityService.getSavedCities();
+  }
 }

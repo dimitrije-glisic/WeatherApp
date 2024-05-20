@@ -39,12 +39,12 @@ describe('SearchCityComponent', () => {
 
   it('should call getLocations and update locations when onSubmit is called', () => {
     const mockLocations: Location[] = [mockLocation];
-    searchService.getLocations.and.returnValue(of(mockLocations));
+    searchService.searchLocations.and.returnValue(of(mockLocations));
 
     component.cityName = 'London';
     component.onSubmit();
 
-    expect(searchService.getLocations).toHaveBeenCalledWith('London');
+    expect(searchService.searchLocations).toHaveBeenCalledWith('London');
     expect(component.locations).toEqual(mockLocations);
   });
 

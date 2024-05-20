@@ -14,8 +14,28 @@ export class SearchCityService {
   constructor(private http: HttpClient) {
   }
 
-  getLocations(cityName: string) {
+  searchLocations(cityName: string) {
     return this.http.get<Location[]>(this.url + cityName + '&limit=' + this.limit + '&appid=' + this.apiKey);
+  }
+
+  saveCity(city: Location) {
+    let locations = JSON.parse(localStorage.getItem('locations') || '[]');
+    if (locations.some((location: Location) => location.name === city.name && location.country === city.country)) {
+      return;
+    }
+    locations.push(city);
+    localStorage.setItem('locations', JSON.stringify(locations));
+  }
+
+  getSavedCities() {
+    return JSON.parse(localStorage.getItem('locations') || '[]');
+  }
+
+  removeCity(city: Location) {
+    console.log('City removed: ' + city.name);
+    let locations = JSON.parse(localStorage.getItem('locations') || '[]');
+    locations = locations.filter((location: Location) => location.name !== city.name);
+    localStorage.setItem('locations', JSON.stringify(locations));
   }
 
 }

@@ -33,7 +33,7 @@ describe('SearchCityService', () => {
 
     const cityName = 'Belgrade';
 
-    service.getLocations(cityName).subscribe(locations => {
+    service.searchLocations(cityName).subscribe(locations => {
       expect(locations.length).toBe(2);
       expect(locations).toEqual(mockLocations);
     })
@@ -48,7 +48,7 @@ describe('SearchCityService', () => {
 
     const cityName = 'InvalidCityName';
 
-    service.getLocations(cityName).subscribe(locations => {
+    service.searchLocations(cityName).subscribe(locations => {
       expect(locations.length).toBe(0);
     });
 
@@ -61,7 +61,7 @@ describe('SearchCityService', () => {
   it('should handle HTTP error', () => {
     const cityName = 'InvalidCityName';
 
-    service.getLocations(cityName).subscribe(
+    service.searchLocations(cityName).subscribe(
       () => fail('should have failed with the 404 error'),
       (error) => {
         expect(error.status).toBe(404);

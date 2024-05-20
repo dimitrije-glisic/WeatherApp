@@ -1,19 +1,30 @@
 <div class="weather-dashboard">
-  <div class="search-units component-container">
+  <div class="search-units">
     <app-search-city (citySelected)="onLocationSelect($event)"></app-search-city>
     <app-units (unitChanged)="onUnitSelect($event)"></app-units>
   </div>
-  <div class="current-hourly">
-    <app-current-weather
-      [weatherData]="weatherData"
-      [units]="units"
-      [location]="location"
-    ></app-current-weather>
-    <app-hourly-forecast
-      [hourlyWeatherData]="weatherData?.hourly"
-      [units]="units"
-      [timezoneOffset]="weatherData?.timezone_offset"
-    ></app-hourly-forecast>
+  <div class="main-content">
+    <div class="left-column">
+      <app-current-weather
+        [weatherData]="weatherData"
+        [units]="units"
+        [location]="location"
+      ></app-current-weather>
+      <div class="additional-content">
+        <app-previous-locations
+          [locations]="previousLocations"
+          (locationSelected)="onLocationSelect($event)"
+          (locationRemoved)="onLocationRemove($event)">
+        </app-previous-locations>
+      </div>
+    </div>
+    <div class="right-column">
+      <app-hourly-forecast
+        [hourlyWeatherData]="weatherData?.hourly"
+        [units]="units"
+        [timezoneOffset]="weatherData?.timezone_offset"
+      ></app-hourly-forecast>
+    </div>
   </div>
   <div class="daily-forecast">
     <app-day-forecast

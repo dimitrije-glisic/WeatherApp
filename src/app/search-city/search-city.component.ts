@@ -41,7 +41,7 @@ export class SearchCityComponent {
   }
 
   onSubmit() {
-    this.searchService.getLocations(this.cityName).subscribe((locations: Location[]) => {
+    this.searchService.searchLocations(this.cityName).subscribe((locations: Location[]) => {
       this.locations = locations;
     });
   }
