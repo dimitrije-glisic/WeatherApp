@@ -1,7 +1,10 @@
 <div class="weather-dashboard">
   <div class="search-units">
     <app-search-city (citySelected)="searchCitySelect($event)"></app-search-city>
-    <app-units (unitChanged)="onUnitSelect($event)"></app-units>
+    <app-units (unitChanged)="onUnitSelect($event)"
+                [currentUnit]="units"
+    >
+    </app-units>
   </div>
   <div class="main-content">
     <div class="left-column">

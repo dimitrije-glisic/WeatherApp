@@ -1,4 +1,10 @@
 <mat-chip-set>
-  <mat-chip (click)="onUnitChange('metric')">Metric: °C, m/s</mat-chip>
-  <mat-chip (click)="onUnitChange('imperial')">Imperial: °F, mph</mat-chip>
+  <mat-chip (click)="onUnitChange('metric')"
+            [ngClass]="_currentUnit === 'metric' ? 'selected' : ''"
+  >Metric: °C, m/s
+  </mat-chip>
+  <mat-chip (click)="onUnitChange('imperial')"
+            [ngClass]="_currentUnit === 'imperial' ? 'selected' : ''"
+  >Imperial: °F, mph
+  </mat-chip>
 </mat-chip-set>
