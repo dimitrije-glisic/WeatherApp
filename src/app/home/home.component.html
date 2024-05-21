@@ -1,6 +1,6 @@
 <div class="weather-dashboard">
   <div class="search-units">
-    <app-search-city (citySelected)="onLocationSelect($event)"></app-search-city>
+    <app-search-city (citySelected)="searchCitySelect($event)"></app-search-city>
     <app-units (unitChanged)="onUnitSelect($event)"></app-units>
   </div>
   <div class="main-content">
@@ -13,7 +13,7 @@
       <div class="additional-content">
         <app-previous-locations
           [locations]="previousLocations"
-          (locationSelected)="onLocationSelect($event)"
+          (locationSelected)="previousLocationSelect($event)"
           (locationRemoved)="onLocationRemove($event)">
         </app-previous-locations>
       </div>

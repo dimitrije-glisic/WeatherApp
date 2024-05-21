@@ -19,11 +19,22 @@ export class SearchCityService {
   }
 
   saveCity(city: Location) {
+    console.log('City saved: ' + city.name);
+    console.log('length: ' + this.getSavedCities().length);
     let locations = JSON.parse(localStorage.getItem('locations') || '[]');
+
     if (locations.some((location: Location) => location.name === city.name && location.country === city.country)) {
       return;
     }
-    locations.push(city);
+
+    console.log('Comparing length: ' + locations.length + ' with limit: ' + this.limit);
+    if (locations.length >= this.limit) {
+      console.log('Removing last city: ' + locations[locations.length - 1].name);
+      locations.pop();
+    }
+
+    locations.unshift(city);
+
     localStorage.setItem('locations', JSON.stringify(locations));
   }
 
@@ -38,4 +49,10 @@ export class SearchCityService {
     localStorage.setItem('locations', JSON.stringify(locations));
   }
 
+  makeCityPrimary($event: Location) {
+    let locations = JSON.parse(localStorage.getItem('locations') || '[]');
+    locations = locations.filter((location: Location) => location.name !== $event.name);
+    locations.unshift($event);
+    localStorage.setItem('locations', JSON.stringify(locations));
+  }
 }

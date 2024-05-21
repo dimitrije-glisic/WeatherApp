@@ -34,7 +34,6 @@ export class PreviousLocationsComponent {
   }
 
   onLocationSelected(location: Location) {
-    //make it first in the list
     this.locationSelected.emit(location);
   }
 

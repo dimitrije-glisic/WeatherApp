@@ -59,7 +59,7 @@ describe('HomeComponent', () => {
     } as Location;
 
     weatherService.getWeather.and.returnValue(of({} as WeatherData));
-    component.onLocationSelect(mockLocation);
+    component.previousLocationSelect(mockLocation);
 
     expect(component.location).toEqual(mockLocation);
     expect(weatherService.getWeather).toHaveBeenCalledWith(40.7128, -74.0060, 'metric');

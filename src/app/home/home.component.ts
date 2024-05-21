@@ -69,7 +69,14 @@ export class HomeComponent implements OnInit {
     this.getWeatherData();
   }
 
-  onLocationSelect($event: Location) {
+  previousLocationSelect($event: Location) {
+    this.location = $event;
+    this.searchCityService.makeCityPrimary($event);
+    this.getWeatherData();
+    this.previousLocations = this.searchCityService.getSavedCities();
+  }
+
+  searchCitySelect($event: Location) {
     this.location = $event;
     this.searchCityService.saveCity($event);
     this.getWeatherData();
