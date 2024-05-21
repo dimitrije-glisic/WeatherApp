@@ -1,9 +1,15 @@
 <form (ngSubmit)="onSubmit()" class="search-form">
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Enter city name</mat-label>
-    <input matInput [(ngModel)]="cityName" name="cityName" required>
-  </mat-form-field>
-  <button mat-raised-button color="primary" type="submit" [disabled]="!cityName">Search</button>
+  <input
+    type="text"
+    [(ngModel)]="cityName"
+    name="cityName"
+    required
+    placeholder="Search city"
+    class="search-input"
+  />
+  <button type="submit" [disabled]="!cityName" class="search-button">
+    Search
+  </button>
 </form>
 
 @if (locations.length > 0) {
@@ -22,4 +28,3 @@
     </mat-list>
   </div>
 }
-
