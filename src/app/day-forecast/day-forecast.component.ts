@@ -26,7 +26,7 @@ export class DayForecastComponent {
   getFormattedDate(timestamp: number, offset: number): string {
     const adjustedTimestamp = (timestamp + offset) * 1000;
     const date = new Date(adjustedTimestamp);
-    return new DatePipe('en-US').transform(date, 'EEE dd, HH:mm', 'UTC') || '';
+    return new DatePipe('en-US').transform(date, 'EEE, MMM dd', 'UTC') || '';
   }
 
   getUnitSymbol(): string {
