@@ -49,7 +49,7 @@ describe('WeatherService', () => {
       expect(data).toEqual(mockWeatherData);
     });
 
-    const req = httpMock.expectOne(`${service.baseUrl}?lat=${lat}&lon=${lon}&units=${units}&appid=${service.appId}`);
+    const req = httpMock.expectOne(`${service.url}?lat=${lat}&lon=${lon}&units=${units}&appid=${service.apiKey}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockWeatherData);
   });
@@ -66,7 +66,7 @@ describe('WeatherService', () => {
       }
     );
 
-    const req = httpMock.expectOne(`${service.baseUrl}?lat=${lat}&lon=${lon}&units=${units}&appid=${service.appId}`);
+    const req = httpMock.expectOne(`${service.url}?lat=${lat}&lon=${lon}&units=${units}&appid=${service.apiKey}`);
     expect(req.request.method).toBe('GET');
     req.flush('Invalid request parameters', { status: 404, statusText: 'Not Found' });
   });

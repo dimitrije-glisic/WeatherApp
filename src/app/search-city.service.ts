@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Location} from "./model/location";
+import {environment} from "../environment/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,8 @@ import {Location} from "./model/location";
 export class SearchCityService {
 
   limit = 5;
-  url = 'http://api.openweathermap.org/geo/1.0/direct?q=';
-  apiKey = 'f8747e9866f43ffc9d8bf5d9694ada40'
+  url = environment.apiUrl;
+  apiKey = environment.apiKey;
 
   constructor(private http: HttpClient) {
   }
