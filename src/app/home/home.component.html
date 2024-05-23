@@ -2,37 +2,46 @@
   <div class="search-units">
     <app-search-city (citySelected)="searchCitySelect($event)"></app-search-city>
     <app-units (unitChanged)="onUnitSelect($event)"
-                [currentUnit]="units"
+               [currentUnit]="units"
     >
     </app-units>
   </div>
+
   <div class="main-content">
-    <div class="left-column">
+    <div class="favorite-locations">
+      <app-previous-locations
+        [locations]="previousLocations"
+        (locationSelected)="previousLocationSelect($event)"
+        (locationRemoved)="onLocationRemove($event)">
+      </app-previous-locations>
+    </div>
+
+    <div class="current-weather">
       <app-current-weather
         [weatherData]="weatherData"
         [units]="units"
         [location]="location"
       ></app-current-weather>
-      <div class="additional-content">
-        <app-previous-locations
-          [locations]="previousLocations"
-          (locationSelected)="previousLocationSelect($event)"
-          (locationRemoved)="onLocationRemove($event)">
-        </app-previous-locations>
-      </div>
     </div>
-    <div class="right-column">
+  </div>
+
+  <div class="forecast-area">
+
+    <div class="forecast">
       <app-hourly-forecast
         [hourlyWeatherData]="weatherData?.hourly"
         [units]="units"
         [timezoneOffset]="weatherData?.timezone_offset"
       ></app-hourly-forecast>
     </div>
+
+    <div class="forecast">
+      <app-day-forecast
+        [weatherData]="weatherData"
+        [units]="units"
+      ></app-day-forecast>
+    </div>
+
   </div>
-  <div class="daily-forecast">
-    <app-day-forecast
-      [weatherData]="weatherData"
-      [units]="units"
-    ></app-day-forecast>
-  </div>
+
 </div>
