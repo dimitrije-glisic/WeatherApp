@@ -72,6 +72,11 @@
 }
 
 @media screen and (max-width: 767px) {
+  .search-units {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .main-content {
     flex-direction: column;
   }
@@ -80,4 +85,5 @@
     flex-direction: column;
     overflow-x: auto;
   }
+
 }

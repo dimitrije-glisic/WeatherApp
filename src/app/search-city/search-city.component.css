@@ -25,7 +25,6 @@
 .city-list {
   position: absolute; /* Position absolutely within the form */
   /*top: 100%; !* Position it just below the form *!*/
-  width: 100%; /* Ensure the list matches the width of the form */
   margin: 0; /* Remove margin to prevent shifting */
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -59,3 +58,22 @@ h3 {
   font-size: 0.8rem;
   color: #757575;
 }
+
+@media (max-width: 768px) {
+  .search-form {
+    min-width: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .search-form {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-form {
+    width: 700px;
+  }
+}
+
