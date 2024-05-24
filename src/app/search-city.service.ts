@@ -28,7 +28,6 @@ export class SearchCityService {
       return;
     }
 
-    console.log('Comparing length: ' + locations.length + ' with limit: ' + this.limit);
     if (locations.length >= this.limit) {
       console.log('Removing last city: ' + locations[locations.length - 1].name);
       locations.pop();
@@ -44,7 +43,6 @@ export class SearchCityService {
   }
 
   removeCity(city: Location) {
-    console.log('City removed: ' + city.name);
     let locations = JSON.parse(localStorage.getItem('locations') || '[]');
     locations = locations.filter((location: Location) => location.name !== city.name);
     localStorage.setItem('locations', JSON.stringify(locations));

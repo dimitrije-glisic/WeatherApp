@@ -19,7 +19,7 @@ describe('SearchCityComponent', () => {
   let searchService: jasmine.SpyObj<SearchCityService>;
 
   beforeEach(async () => {
-    const searchServiceSpy = jasmine.createSpyObj('SearchCityService', ['getLocations']);
+    const searchServiceSpy = jasmine.createSpyObj('SearchCityService', ['searchLocations']);
     await TestBed.configureTestingModule({
       imports: [SearchCityComponent, BrowserAnimationsModule],
       providers: [{provide: SearchCityService, useValue: searchServiceSpy}]
