@@ -9,7 +9,7 @@ import {environment} from "../environment/environment";
 export class SearchCityService {
 
   limit = 5;
-  url = environment.apiUrl;
+  url = environment.cityApiUrl;
   apiKey = environment.apiKey;
 
   constructor(private http: HttpClient) {

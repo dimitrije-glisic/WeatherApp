@@ -7,7 +7,7 @@ import {environment} from "../environment/environment";
   providedIn: 'root'
 })
 export class WeatherService {
-  url = environment.apiUrl;
+  url = environment.weatherApiUrl;
   apiKey = environment.apiKey;
 
   constructor(private httpClient: HttpClient) {
