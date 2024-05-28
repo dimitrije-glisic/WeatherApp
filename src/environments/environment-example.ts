@@ -2,7 +2,7 @@
 // and fill in the actual value for apiKey.
 
 export const environment = {
-  cityApiUrl: 'http://api.openweathermap.org/geo/1.0/direct?q=',
+  cityApiUrl: 'https://api.openweathermap.org/geo/1.0/direct?q=',
   weatherApiUrl: 'https://api.openweathermap.org/data/3.0/onecall',
   apiKey: 'your-openweathermap-api-key-here',
 }
